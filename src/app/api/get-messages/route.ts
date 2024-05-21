@@ -25,7 +25,6 @@ export async function GET(request: Request) {
         { $sort: { 'messages.createdAt': -1 } },
         { $group: { _id: '$_id', messages: { $push: '$messages' } } },
       ]).exec();
-      console.log('user', user);
       
       if (!user || user.length === 0) {
         return Response.json(
