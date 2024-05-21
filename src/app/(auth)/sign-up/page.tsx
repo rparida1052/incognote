@@ -15,7 +15,7 @@ import { FormField, FormItem, FormLabel, FormMessage,Form } from '@/components/u
 import { Loader2 } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 
-const SignIn = () => {
+const SignUp = () => {
     const { toast } = useToast()
     const [username, setUsername] = useState('');
     const [usernameMessage, setUsernameMessage] = useState('');
@@ -167,4 +167,4 @@ const SignIn = () => {
   )
 }
 
-export default SignIn
+export default SignUp

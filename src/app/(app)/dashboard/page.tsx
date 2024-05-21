@@ -9,7 +9,7 @@ import { User } from '@/model/user.model';
 import { AcceptMessageSchema } from '@/schemas/AcceptMessageSchema';
 import { ApiResponse } from '@/types/ApiResponse';
 import { zodResolver } from '@hookform/resolvers/zod';
-import axios, {  AxiosError } from 'axios';
+import axios, { AxiosError } from 'axios';
 import { Loader2, RefreshCcw } from 'lucide-react';
 import { useSession } from 'next-auth/react';
 import React, { useCallback, useEffect, useState } from 'react'
@@ -37,10 +37,14 @@ const UserDashboard = () => {
 
 
   const fetchAcceptingMessages = useCallback(async () => {
+
     setIsloading(true);
     try {
       const response = await axios.get<ApiResponse>('/api/accept-messages');
-      setValue('acceptMessages', response.data.isAcceptingMessage);
+
+      setValue('acceptMessages', response.data.isAcceptingMessages);
+
+
     } catch (error) {
       const axiosError = error as AxiosError<ApiResponse>;
       toast({
@@ -116,7 +120,7 @@ const UserDashboard = () => {
     }
   }
 
-  
+
 
   if (!session || !session.user) {
     return <div></div>;
@@ -159,6 +163,7 @@ const UserDashboard = () => {
           disabled={isSwitchLodaing}
         />
         <span className="ml-2">
+
           Accept Messages: {acceptMessages ? 'On' : 'Off'}
         </span>
       </div>
